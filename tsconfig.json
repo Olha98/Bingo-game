@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+      "rootDir": ".",
+      "target": "es5",
+      "lib": ["dom", "dom.iterable"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": false,
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "incremental": true,
+      "jsx": "preserve",
+      "baseUrl": "./src/",
+      "paths": {
+        "@/atoms": ["components/atoms/"],
+        "@/molecules": ["components/molecules/"],
+      }
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.svg", "lint-staged.config.js", ],
+    "exclude": ["node_modules", "**/node_modules", "dist", "yarn.lock", "./build/*", "build", "./build/**/*"  ,".vscode" ],
+  
+  }
