@@ -3,13 +3,23 @@ import { useState } from 'react';
 import * as S from './style';
 
 export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
-  const [active, seActive] = useState([]);
+  const [calledNumbers, setCalledNumbers] = useState([]);
+  const [isWin, setIsWin] = useState(false);
+  const isActiveCell = num => (calledNumbers.includes(Number(num)) ? 'green' : 'white');
 
-  const checkSteps = (e: any) => {
-    console.log(e.target.id, 'id');
+  const handleClick = (e: any) => {
+    const id = Number(e.target.id);
 
-    seActive([...active, Number(e.target.id)]);
+    if (!calledNumbers.includes(id)) {
+      setCalledNumbers([...calledNumbers, id]);
+    } else {
+      setCalledNumbers(calledNumbers.filter(num => num !== id));
+    }
   };
+
+
+
+
 
   return (
     <S.BingoBoardTable>
@@ -17,7 +27,7 @@ export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
         {board.map((row, i) => (
           <tr key={i}>
             {row.map((num, j) => (
-              <td key={`${i}-${j}`} id={num} onClick={e => checkSteps(e)} style={{ background: active.includes(Number(num)) ? 'green' : 'white' }}>
+              <td key={`${i}-${j}`} id={num} onClick={e => handleClick(e)} style={{ background: isActiveCell(num) }}>
                 {num}
               </td>
             ))}

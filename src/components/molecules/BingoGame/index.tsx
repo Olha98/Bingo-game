@@ -4,6 +4,7 @@ import { BingoBoard } from '../BingoBoard';
 // import BingoCard from './BingoCard';
 
 export const BingoGame = () => {
+  // useStateS
   // Define the range of numbers to choose from
   const numbers = Array.from({ length: 25 }, (_, i) => i);
 
@@ -11,18 +12,18 @@ export const BingoGame = () => {
   const board = [];
   for (let i = 0; i < 5; i++) {
     const row = [];
-    
+
     for (let j = 0; j < 5; j++) {
       if (i === 2 && j === 2) {
         // Center square is free
-        row.push('Free');
+        // row.push('Free');
+        row.push(12);
       } else {
         const num = i * 5 + j;
         row.push(num);
       }
     }
     board.push(row);
-
   }
 
   return (
