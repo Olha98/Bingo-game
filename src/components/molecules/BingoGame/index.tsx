@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BingoBoard } from '../BingoBoard';
-// import BingoBoard from './BingoBoard';
-// import BingoCard from './BingoCard';
+import db from '../../../db.json';
 
 export const BingoGame = () => {
-  // useStateS
-  // Define the range of numbers to choose from
+  console.log(db);
+  // Define the range of numbers to db choose from
   const numbers = Array.from({ length: 25 }, (_, i) => i);
 
   // Create the 5x5 bingo board with consecutive numbers
@@ -14,22 +13,18 @@ export const BingoGame = () => {
     const row = [];
 
     for (let j = 0; j < 5; j++) {
-      if (i === 2 && j === 2) {
-        // Center square is free
-        // row.push('Free');
-        row.push(12);
-      } else {
-        const num = i * 5 + j;
-        row.push(num);
-      }
+      // if (i === 2 && j === 2) {
+      //   // Center square is free
+      //   // row.push('Free');
+      //   row.push(12);
+      // } else {
+      const num = i * 5 + j;
+
+      row.push({ cells: num, content: '' });
+      // }
     }
     board.push(row);
   }
-
-  return (
-    <div>
-      <p>hello</p>
-      <BingoBoard board={board} />
-    </div>
-  );
+  console.log(board, 'board');
+  return <div>{/* <BingoBoard board={board} /> */}</div>;
 };

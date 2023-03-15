@@ -25,7 +25,7 @@ export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
         return;
       }
 
-      // filtering for columns
+      // filtering for colums
       if (calledNumbers.filter(n => n % 5 === i).length === 5) {
         setIsWin(true);
         return;
@@ -55,13 +55,16 @@ export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
   return (
     <S.BingoBoardTable>
       <tbody>
-        {board.map((row, i) => (
+        {board.number.map((row, i) => (
           <tr key={i}>
-            {row.map((num, j) => (
-              <td key={`${i}-${j}`} id={num} onClick={e => handleClick(e)} style={{ background: isActiveCell(num) }}>
-                {num}
-              </td>
-            ))}
+            {row.map((num, j) => {
+              const isCenter = i === 2 && j === 2;
+              return (
+                <td key={`${i}-${j}`} id={isCenter ? 'free' : num} onClick={e => handleClick(e)} style={{ background: isActiveCell(num) }}>
+                  {num}
+                </td>
+              );
+            })}
           </tr>
         ))}
       </tbody>
