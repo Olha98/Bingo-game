@@ -55,13 +55,19 @@ export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
   return (
     <S.BingoBoardTable>
       <tbody>
-        {board.number.map((row, i) => (
+        {board?.map((row, i) => (
           <tr key={i}>
-            {row.map((num, j) => {
+            {console.log(row, 'row')}
+            {row?.map((num, j) => {
               const isCenter = i === 2 && j === 2;
               return (
-                <td key={`${i}-${j}`} id={isCenter ? 'free' : num} onClick={e => handleClick(e)} style={{ background: isActiveCell(num) }}>
-                  {num}
+                <td
+                  key={`${i}-${j}`}
+                  id={isCenter ? 'free' : num.index}
+                  onClick={e => handleClick(e)}
+                  style={{ background: isActiveCell(num.index) }}
+                >
+                  {num.content}
                 </td>
               );
             })}
