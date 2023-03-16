@@ -1,14 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize'
+import { normalize } from 'styled-normalize';
 
 const GlobalStyle = createGlobalStyle`
-  ${normalize}
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+${normalize}
   body, html {
     margin: 0;
     padding: 0;
     background-color: white;
     box-sizing: border-box;
-    font-family: "Inter","Roboto", sans-serif; 
+    font-size: 14px;
+    font-family: 'Inconsolata', monospace;
   }
 
   * {

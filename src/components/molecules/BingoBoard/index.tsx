@@ -1,79 +1,121 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import party from 'party-js';
+import _ from 'lodash';
 import * as S from './style';
 
 export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
-  const [calledNumbers, setCalledNumbers] = useState([]);
-  const [isWin, setIsWin] = useState(false);
-  const isActiveCell = num => (calledNumbers.includes(Number(num)) ? 'green' : 'white');
+  const [numbers, setNumbers] = useState(Array.from({ length: 25 }, (_, i) => i));
+  const [selected, setSelected] = useState([]);
+  const [wins, setWins] = useState([]);
+  // const [activeCells, setActiveCells] = useState([]);
 
-  const handleClick = (e: any) => {
-    const id = Number(e.target.id);
-
-    if (!calledNumbers.includes(id)) {
-      setCalledNumbers([...calledNumbers, id]);
+  const handleClick = number => {
+    if (!selected.includes(number)) {
+      setSelected([...selected, number]);
+      // console.log(activeCells, 'vactiveCells');
     } else {
-      setCalledNumbers(calledNumbers.filter(num => num !== id));
+      setSelected(selected.filter(num => num !== number));
     }
   };
 
   const checkWin = () => {
+    const newWins = [];
+    console.log(newWins, 'vvHHHHHHHHHH');
     for (let i = 0; i < 5; i++) {
-      // filtering for rows
-      if (calledNumbers.filter(n => Math.floor(n / 5) === i).length === 5) {
-        setIsWin(true);
-        return;
+      // Check rows
+      if (selected.filter(n => Math.floor(n / 5) === i).length === 5) {
+        newWins.push(selected.filter(n => Math.floor(n / 5) === i));
       }
-
-      // filtering for colums
-      if (calledNumbers.filter(n => n % 5 === i).length === 5) {
-        setIsWin(true);
-        return;
+      // Check columns
+      if (selected.filter(n => n % 5 === i).length === 5) {
+        newWins.push(selected.filter(n => n % 5 === i));
       }
-
-      // filtering for diagonals from top-left to bottom-right
-      if (calledNumbers.filter(n => n % 6 === i).length === 5) {
-        console.log('here');
-        setIsWin(true);
-        return;
-      }
-      // filtering for diagonals from top-right to bottom-left
-
-      if (calledNumbers.filter(n => n % 4 === 0 && n !== 0 && n !== 24).length === 5) {
-        console.log('here');
-        setIsWin(true);
-        return;
-      }
-      setIsWin(false);
     }
+    // Check diagonal from top-left to bottom-right
+    if (selected.filter(n => n % 6 === 0).length === 5) {
+      newWins.push(selected.filter(n => n % 6 === 0));
+    }
+    // Check diagonal from top-right to bottom-left
+    if (selected.filter(n => n % 4 === 0 && n !== 0 && n !== 24).length === 5) {
+      newWins.push(selected.filter(n => n % 4 === 0 && n !== 0 && n !== 24));
+    }
+
+    if (newWins.length > wins.length) {
+      setWins(newWins);
+    }
+    console.log(wins, 'Wiiins');
+    console.log(wins.concat(newWins));
+
+    // setActiveCells(wins.concat(newWins)[0]);
+  };
+
+  const resetGame = () => {
+    setNumbers(Array.from({ length: 25 }, (_, i) => i));
+    setSelected([]);
+    setWins([]);
   };
   useEffect(() => {
+    console.log(selected, 'selected');
+    // if (selected.length < 0) {
     checkWin();
-    console.log(isWin, 'isWin');
-  }, [calledNumbers, isWin]);
+    // }
+  }, [selected]);
+
+  useEffect(() => {
+    // console.log(_.flatten(wins), 'ffnnfnf');
+    console.log(wins, 'wins');
+  }, [wins]);
 
   return (
-    <S.BingoBoardTable>
-      <tbody>
-        {board?.map((row, i) => (
-          <tr key={i}>
-            {console.log(row, 'row')}
-            {row?.map((num, j) => {
-              const isCenter = i === 2 && j === 2;
-              return (
-                <td
-                  key={`${i}-${j}`}
-                  id={isCenter ? 'free' : num.index}
-                  onClick={e => handleClick(e)}
-                  style={{ background: isActiveCell(num.index) }}
-                >
-                  {num.content}
-                </td>
-              );
-            })}
-          </tr>
-        ))}
-      </tbody>
-    </S.BingoBoardTable>
+    <>
+      <button onClick={resetGame}>Reset Game</button>
+      <div className="button">Click me!</div>
+      {wins.length > 0 && (
+        <div>
+          <h2>You have {wins.length} bingos!</h2>
+          {wins.map((win, i) => (
+            <div key={i}>
+              <h3>Bingo {i + 1}</h3>
+              <ul>
+                {win.map(n => (
+                  <li key={n}>{n}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+      {/* _.flatten(wins).includes(Number(num.index)) */}
+      <S.BingoBoardTable>
+        <S.BingoBoardTBody>
+          {board?.map((row, i) => (
+            <S.BingoRow key={i}>
+              {row?.map((num, j) => {
+                const isSelected = selected.includes(num.index);
+                const isWinning = wins.flat().includes(num.index);
+                console.log(wins.flat(), 'kk');
+                console.log(wins.flat().includes(num.index), 'vvvvv');
+                // console.log(isSelected, 'isSelected');
+                const isCenter = i === 2 && j === 2;
+                return (
+                  <S.BingoCard
+                    key={`${i}-${j}`}
+                    center={isCenter}
+                    selected={isSelected}
+                    winning={isWinning}
+                    onClick={() => handleClick(num.index)}
+                    isActive={selected.includes(Number(num.index))}
+                  >
+                    <span>{num.index}</span>
+                    <p>{num.content}</p>
+                  </S.BingoCard>
+                );
+              })}
+            </S.BingoRow>
+          ))}
+        </S.BingoBoardTBody>
+      </S.BingoBoardTable>
+    </>
   );
 };

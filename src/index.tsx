@@ -5,8 +5,8 @@ import App from './pages/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle/>
-      <App />
+    <GlobalStyle />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
