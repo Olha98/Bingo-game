@@ -4,6 +4,8 @@ export const BingoBoardTable = styled.table`
   height: 80%;
   max-width: 800px;
   width: 100%;
+  /* max-width: 800px;
+  width: 100%; */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,16 +15,26 @@ export const BingoBoardTable = styled.table`
   :hover {
     transform: translate(-50%, -50%) perspective(none) rotateX(0deg) rotateY(0deg);
   }
+
+  @media (max-width: 1024px) {
+    height: calc(100% - 200px);
+    width: calc(100% - 200px);
+    padding: 0 20px;
+  }
+  @media (max-width: 1024px) {
+    width: calc(100% - 50px);
+  }
 `;
+
 export const BingoBoardTBody = styled.tbody``;
 
 const selectedStyle = css`
   background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
 `;
 
 const winningStyle = css`
-  background-color:#844eca;
+  background: radial-gradient(#76b2fe, #b69efe);
 `;
 
 export const BingoRow = styled.tr``;
@@ -78,6 +90,29 @@ export const BingoCard = styled.td<{ isActive: boolean; selected?: any; center?:
   :hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.01);
+  }
+
+  @media (max-width: 1024px) {
+    padding: 8px;
+    p,
+    span {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 735px) {
+    padding: 5px;
+    p,
+    span {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 419px) {
+    p,
+    span {
+      font-size: 8px;
+    }
   }
 
   @keyframes strike {
