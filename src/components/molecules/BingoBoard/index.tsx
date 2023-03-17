@@ -22,9 +22,9 @@ export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
       <ResetButton resetGame={resetGame} />
       <WriteBoard wins={wins} />
       <S.BingoBoardTable>
-        <S.BingoBoardTBody>
+        <tbody>
           {board?.map((row, i) => (
-            <S.BingoRow key={i}>
+            <tr key={i}>
               {row?.map((num, j) => {
                 const isSelected = selected.includes(num.index);
                 const isWinning = wins.flat().includes(num.index);
@@ -43,9 +43,9 @@ export const BingoBoard: React.FC<{ board: any }> = ({ board }) => {
                   </S.BingoCard>
                 );
               })}
-            </S.BingoRow>
+            </tr>
           ))}
-        </S.BingoBoardTBody>
+        </tbody>
       </S.BingoBoardTable>
     </Fragment>
   );

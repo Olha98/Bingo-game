@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
+import { media } from './breckpoints';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
@@ -13,6 +14,7 @@ ${normalize}
     font-family: 'Inconsolata', monospace;
   }
 
+
   * {
     box-sizing: border-box;
 
@@ -25,54 +27,75 @@ ${normalize}
     }
   }
 
+   @media ${media.md} {
+    p{
+      font-size: 0.9rem;
+    }
+    span{
+       font-size: 0.6rem;
+    }
+   }
+
+   @media ${media.sm}  {
+    p {
+      font-size: 0.8rem;
+    }
+    span{
+       font-size: 0.5rem;
+    }
+   }
+
+    @media ${media.s}  {
+    p{
+       font-size: 0.5rem;
+    }
+
+   }
+   
+
   :root {
 
     /*PALLET*/
    --accent-yellow: #DEDF79;
    --accent-blue: #A29BC7;
    --grey:#F3F3F7;
-   --white:#FCFCFD;
+   --white:#FFF;
+   --black:#000;
    --text-dark:#323434;
-   /* SCSS Gradient */
-   $gradient-top: linear-gradient(0deg, #072ac8ff, #1e96fcff, #60b6fbff, #81c6faff, #a2d6f9ff, #fcf300ff, #fedd00ff, #ffd200ff, #ffc600ff);
+   --purple_v1: #d7d4e4;
+
 
 
     /*Utils*/
     --border-radius: 10px;
-    --input-border-radius: 5px;
+
 
     /*Card*/
-    --card-radius: 10px;
+    --base-radius: 10px;
     --card-gap: 24px;
     --card-shadow: drop-shadow(0px 4px 4px rgba(199, 199, 199, 0.25));
 
     /*Containers*/
-    --container-width: 1420px;
-    --container-width-1000: 1000px;
-    --card-container-width: 1200px;
+    --laptop: 1024px;
+    --mobile: 734px;
+    --sm-mobile: 420px;
 
 
     /*gradient*/
-    --gradient_blue: linear-gradient(70deg, #0862B3, #022B68, #04112B);
-    --gradient_insta: linear-gradient(70deg, rgb(247, 9, 95, 255), rgb(241, 115, 36, 255), rgb(173, 1, 151, 255), rgba(91, 49, 245, 255), rgba(80, 172, 174, 255));
-
+    --gradient_purple_v1: linear-gradient(45deg, #4568dc, #b06ab3);
+    --gradient_purple_v2: radial-gradient(#76b2fe, #b69efe);
+    --gradient_purple_v3: linear-gradient(#591bc5, #f588d8, #c0a3e5, #591bc5);
   }
 
 
 
   h1, h2, h3, h4, h5, h6, p {
     margin: 0;
-    color: var(--moon-D);
   }
 
   a {
     text-decoration: none;
     transition: all .3s;
-  }
-
-
-  a, .link {
-    color: #2997ff;
   }
 
   ul,

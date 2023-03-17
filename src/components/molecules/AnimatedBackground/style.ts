@@ -2,18 +2,19 @@ import styled from 'styled-components';
 
 export const AnimatedBackgroundWrapper = styled.div`
   .cube {
-    position: absolute;
     top: 80vh;
     left: 45vw;
     width: 10px;
     height: 10px;
-    border: solid 1px #d7d4e4;
+    position: absolute;
+    border: solid 1px var(--purple_v1);
     transform-origin: top left;
     transform: scale(0) rotate(0deg) translate(-50%, -50%);
     animation: cube 12s ease-in forwards infinite;
   }
+  
   .cube:nth-child(2n) {
-    border-color: #fff;
+    border-color: var(--white);
   }
   .cube:nth-child(2) {
     animation-delay: 2s;
@@ -52,6 +53,7 @@ export const AnimatedBackgroundWrapper = styled.div`
       background-position: 0% 50%;
     }
   }
+
   @keyframes cube {
     from {
       transform: scale(0) rotate(0deg) translate(-50%, -50%);

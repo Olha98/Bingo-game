@@ -1,11 +1,11 @@
 import React from 'react';
+import { AnimatedBackground } from '../AnimatedBackground';
 import { BingoBoard } from '../BingoBoard';
 import db from '../../../db/db';
 import * as S from './style';
-import { WriteBoard } from '../WriteBoard';
-import { AnimatedBackground } from '../AnimatedBackground';
 
 export const BingoGame = () => {
+  
   // Create the 5x5 bingo board with consecutive numbers
   const board = [];
   for (let i = 0; i < 5; i++) {

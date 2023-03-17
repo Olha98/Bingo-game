@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'utils/stylesheet/breckpoints';
 
 export const BingoBoardWrapper = styled.div`
   height: 100vh;
@@ -9,7 +10,7 @@ export const BingoBoardWrapper = styled.div`
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 
-  /* @media (max-width: 1024px) {
+  @media ${media.md}  {
     padding: 0 20px;
-  } */
+  }
 `;
