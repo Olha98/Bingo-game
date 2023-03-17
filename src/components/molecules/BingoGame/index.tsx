@@ -5,7 +5,6 @@ import db from '../../../db/db';
 import * as S from './style';
 
 export const BingoGame = () => {
-  
   // Create the 5x5 bingo board with consecutive numbers
   const board = [];
   for (let i = 0; i < 5; i++) {

@@ -13,7 +13,7 @@ export const AnimatedBackground = () => {
       e.target.classList.remove('animate');
     }, 200);
   };
-  
+
   let className = document.getElementsByClassName('bubbly-button');
   for (let i = 0; i < className.length; i++) {
     className[i].addEventListener('click', animateButton, false);

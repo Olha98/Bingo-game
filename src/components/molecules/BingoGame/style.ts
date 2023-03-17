@@ -10,7 +10,7 @@ export const BingoBoardWrapper = styled.div`
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 
-  @media ${media.md}  {
+  @media ${media.md} {
     padding: 0 20px;
   }
 `;

@@ -12,7 +12,7 @@ export const AnimatedBackgroundWrapper = styled.div`
     transform: scale(0) rotate(0deg) translate(-50%, -50%);
     animation: cube 12s ease-in forwards infinite;
   }
-  
+
   .cube:nth-child(2n) {
     border-color: var(--white);
   }
