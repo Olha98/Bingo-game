@@ -2,6 +2,7 @@
   "name": "bingo-game-1",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Olha98.github.io/bingo-game",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -13,6 +14,7 @@
     "@types/styled-components": "^5.1.26",
     "canvas-confetti": "^1.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "gh-pages": "^5.0.0",
     "lint": "^0.8.19",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
