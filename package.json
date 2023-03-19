@@ -34,9 +34,7 @@
     "clean": "rm -rf node_modules && rm -rf yarn.lock && rm -rf package-lock.json",
     "lint:css": "npx stylelint \"**/style.ts\"",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install",
-    "predeploy": "npm run build",
-    "deploy": "netlify deploy -p"
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
