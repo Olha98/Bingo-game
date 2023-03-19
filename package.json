@@ -36,7 +36,9 @@
     "clean": "rm -rf node_modules && rm -rf yarn.lock && rm -rf package-lock.json",
     "lint:css": "npx stylelint \"**/style.ts\"",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
